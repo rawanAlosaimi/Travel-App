@@ -9,6 +9,10 @@ const fetch = require('node-fetch')
 // Start up an instance of app
 const app = express();
 
+const GEONAMES_KEY = 'rawanalosaimi';
+const WEATHERBIT_KEY = '10b2279a616541fcb3651d7497f7dd6c';
+const PIXABAY_KEY = '24222689-b28f37477898fa40deb466866';
+
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
@@ -31,7 +35,7 @@ app.post('/API', async function (req, res) {
     location = req.body.location;
     //console.log(location);
 
-    const response_geonames = await fetch(`http://api.geonames.org/searchJSON?q=${location}&maxRows=10&username=${process.env.GEONAMES_KEY}`);
+    const response_geonames = await fetch(`http://api.geonames.org/searchJSON?q=${location}&maxRows=10&username=${GEONAMES_KEY}`);
     const newData_geonames = await response_geonames.json();
     //console.log(newData_geonames);
 
@@ -43,7 +47,7 @@ app.post('/API', async function (req, res) {
     }
     //console.log(Geonames_data);
 
-    const response_weatherbit = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${Geonames_data.lat}&lon=${Geonames_data.lng}&key=${process.env.WEATHERBIT_KEY}`);
+    const response_weatherbit = await fetch(`https://api.weatherbit.io/v2.0/forecast/daily?lat=${Geonames_data.lat}&lon=${Geonames_data.lng}&key=${WEATHERBIT_KEY}`);
     const newData_weatherbit = await response_weatherbit.json();
     //console.log(newData_weatherbit);
 
@@ -54,7 +58,7 @@ app.post('/API', async function (req, res) {
     }
     //console.log(Weatherbit_data);
 
-    const response_pixabay = await fetch(`https://pixabay.com/api/?key=${process.env.PIXABAY_KEY}&category=place&q=${location}&image_type=photo`);
+    const response_pixabay = await fetch(`https://pixabay.com/api/?key=${PIXABAY_KEY}&category=place&q=${location}&image_type=photo`);
     const newData_pixabay = await response_pixabay.json();
     //console.log(newData_pixabay);
 
