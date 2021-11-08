@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <meta charset="utf-8">
+    <title>Travel App</title>
+</head>
+
+<body>
+
+    <main>
+        <section id="tripInfo">
+            <div class="titels">
+                <p>Destination:</p>
+                <p>Date: </p>
+            </div>
+            <form class="tripData" onsubmit="return Client.handleSubmit(event)">
+                <input id="location" type="text" name="input" value="" placeholder="Enter your location here">
+                <input type="date" id="dateForm">
+                <!-- <button id="submit">submit</button> -->
+                <input type="submit" name="" id="submit" value="Submit" onclick="return Client.handleSubmit(event)"
+                    onsubmit="return handleSubmit(event)">
+            </form>
+        </section>
+    </main>
+
+    <section class="tripResultBox">
+        <div class="box">
+            <div class="tripResult">
+                <div class="title">
+                    <h2>Trip to: <span id="name"></span> , <span id="countryName"> </span></h2>
+                </div>
+
+                <div class="title">
+                    <h2>Departing: <span id="date"></span></h2>
+                </div>
+
+                <div class="title">
+                    <h2>Weather info:</h2>
+                </div>
+
+                <div class="WeatherInfo">
+                    <div class="tempBox">
+                        <div>
+                            <h2>High</h2>
+                        </div>
+
+                        <div>
+                            <h2>Low</h2>
+                        </div>
+                    </div>
+
+                    <div class="tempBox">
+                        <div>
+                            <h2 id="high_temp"></h2>
+                        </div>
+
+                        <div>
+                            <h2 id="low_temp"></h2>
+                        </div>
+                    </div>
+
+                    <div class="tempDescription">
+                        <h2><span id="description"></span> throughout the day</h2>
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Check that service workers are supported
+        if ('serviceWorker' in navigator) {
+            // Use the window load event to keep the page load performant
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/service-worker.js');
+            });
+        }
+    </script>
+</body>
+
+</html>
