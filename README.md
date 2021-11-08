@@ -11,3 +11,13 @@ Rawan Alosaimi.
 GEONAMES_KEY = rawanalosaimi
 WEATHERBIT_KEY = 10b2279a616541fcb3651d7497f7dd6c
 PIXABAY_KEY = 24222689-b28f37477898fa40deb466866
+
+## run the project
+npm run start
+
+## run the project in development mode
+npm run build-dev
+
+## run the project in production mode
+npm run build-prod
+
